@@ -1,0 +1,5 @@
+load("//symlink/test:defs.bzl", "e2e_symlink_test")
+
+e2e_symlink_test(
+    name = "test",
+)

@@ -1,0 +1,36 @@
+load("@rules_curl//curl/upload/file:defs.bzl", "curl_upload_file")
+load("//:binaries.bzl", "BINARIES")
+
+[
+    curl_upload_file(
+        name = ape,
+        src = "@{}//:ape".format(ape),
+        dst = ape,
+        tags = ["manual"],
+        url = "https://gitlab.arm.com/api/v4/projects/bazel%2Fape/packages/generic/cosmos.zip/3.7.1",
+    )
+    for ape in (
+        "ape-arm64.elf",
+        "ape-x86_64.elf",
+        "ape-x86_64.macho",
+    )
+]
+
+[
+    curl_upload_file(
+        name = binary,
+        src = "@cosmos-{}//:{}".format(binary, binary),
+        dst = binary,
+        tags = ["manual"],
+        url = "https://gitlab.arm.com/api/v4/projects/bazel%2Fape/packages/generic/cosmos.zip/3.7.1",
+    )
+    for binary in BINARIES
+]
+
+curl_upload_file(
+    name = "ape-m1.c",
+    src = "@ape-m1.c",
+    dst = "ape-m1.c",
+    tags = ["manual"],
+    url = "https://gitlab.arm.com/api/v4/projects/bazel%2Fape/packages/generic/cosmos.zip/3.7.1",
+)

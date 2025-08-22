@@ -1,0 +1,11 @@
+load("//:binaries.bzl", "BINARIES")
+
+[
+    alias(
+        name = binary,
+        actual = "//ape/toolchain/info:{}".format(binary),
+        deprecation = "The `@ape//:{0}` target is deprecated in favour of the more explicit `@ape//toolchain/info:{0}` and will be removed in a subsequent version.".format(binary),
+        tags = ["manual"],
+    )
+    for binary in BINARIES
+]
