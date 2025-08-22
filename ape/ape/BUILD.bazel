@@ -1,17 +1,20 @@
-filegroup(
+sh_binary(
     name = "unzip",
-    srcs = ["unzip"],
+    srcs = ["unzip_wrapper.sh"],
+    data = ["unzip"],
     visibility = ["//visibility:public"],
 )
 
-filegroup(
+sh_binary(
     name = "tar",
-    srcs = ["tar"],
+    srcs = ["tar_wrapper.sh"],
+    data = ["tar"],
     visibility = ["//visibility:public"],
 )
 
-filegroup(
+sh_binary(
     name = "assimilate",
-    srcs = ["assimilate"],
+    srcs = ["assimilate_wrapper.sh"],
+    data = ["assimilate"],
     visibility = ["//visibility:public"],
 )
