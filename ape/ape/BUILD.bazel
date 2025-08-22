@@ -1,1 +1,17 @@
-exports_files(["unzip", "tar", "assimilate"], visibility = ["//visibility:public"])
+sh_binary(
+    name = "unzip",
+    srcs = ["unzip"],
+    visibility = ["//visibility:public"],
+)
+
+sh_binary(
+    name = "tar", 
+    srcs = ["tar"],
+    visibility = ["//visibility:public"],
+)
+
+sh_binary(
+    name = "assimilate",
+    srcs = ["assimilate"], 
+    visibility = ["//visibility:public"],
+)
