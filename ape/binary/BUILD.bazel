@@ -1,0 +1,21 @@
+load("//:binaries.bzl", "BINARIES")
+load(":rule.bzl", "ape_binary")
+
+[
+    ape_binary(
+        name = binary,
+        src = "@cosmos-{}//:{}".format(binary, binary),
+        tags = ["manual"],
+        visibility = ["//:__subpackages__"],
+    )
+    for binary in BINARIES
+]
+
+alias(
+    name = "template",
+    actual = select({
+        "@toolchain_utils//toolchain/constraint/os:windows": ":nt.tmpl.bat",
+        "//conditions:default": ":posix.tmpl.sh",
+    }),
+    visibility = ["//ape/binary:__pkg__"],
+)

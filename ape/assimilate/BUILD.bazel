@@ -1,0 +1,12 @@
+load("//:binaries.bzl", "BINARIES")
+load("//ape/assimilate:defs.bzl", "ape_assimilate")
+
+[
+    ape_assimilate(
+        name = binary,
+        src = "@cosmos-{}//:{}".format(binary, binary),
+        tags = ["manual"],
+        visibility = ["//:__subpackages__"],
+    )
+    for binary in BINARIES
+]

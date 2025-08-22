@@ -1,10 +1,10 @@
 load("//:binaries.bzl", "BINARIES")
+load("@toolchain_utils//toolchain/info:defs.bzl", "toolchain_info")
 
 [
-    alias(
+    toolchain_info(
         name = binary,
-        actual = "//ape/assimilate:{}".format(binary),
-        tags = ["manual"],
+        target = "//ape:{}".format(binary),
         visibility = ["//visibility:public"],
     )
     for binary in BINARIES
